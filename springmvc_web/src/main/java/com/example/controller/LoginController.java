@@ -8,7 +8,7 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class LoginController {
 	
-	@RequestMapping(value="/login")
+	@RequestMapping(value="/welcome")
 	 public ModelAndView login(ModelAndView mv){
 		// ¶¯Ì¬Ìø×ªÒ³Ãæ
 		mv.addObject("name", "SpringMVC");

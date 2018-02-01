@@ -13,16 +13,28 @@
 		<param-value>classpath:applicationContext.xml</param-value>  
 	</context-param> 
 	
-	<!-- 编码过滤器 -->  
-	<filter>  
-		<filter-name>encodingFilter</filter-name>  
-		<filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>  
-		<async-supported>true</async-supported>  
-		<init-param>  
-			<param-name>encoding</param-name>  
-			<param-value>UTF-8</param-value>  
-		</init-param>  
-	</filter>  
+	<!-- Spring监听器 -->  
+	<listener>
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class> 
+	</listener>
+	
+	<!-- 编码过滤器 ：CharacterEncodingFilter,配置这个是拦截所有的资源并设置好编号格式。
+　　		encoding设置成utf-8就相当于request.setCharacterEncoding("UTF-8");  
+　　		foreEncoding设置成true就相当于response.setCharacterEncoding("UTF-8");
+	-->
+	<filter>
+		<filter-name>encodingFilter</filter-name>
+		<filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+		<async-supported>true</async-supported>
+		<init-param>
+			<param-name>encoding</param-name>
+			<param-value>UTF-8</param-value>
+		</init-param>
+		<init-param>
+			<param-name>forceEncoding</param-name>
+			<param-value>true</param-value>
+		</init-param>
+	</filter>
 	<filter-mapping>  
 		<filter-name>encodingFilter</filter-name>  
 		<url-pattern>/*</url-pattern>  
@@ -51,7 +63,7 @@
     </servlet-mapping>
     <!-- 连接池 启用 Web 监控统计功能    end-->
   	
-	<!-- Spring MVC servlet -->  
+	<!-- Spring MVC servlet:拦截所有请求，都交给springmvc转发,加载spring-mvc.xml -->  
 	<servlet>  
 		<servlet-name>SpringMVC</servlet-name>  
 		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>  
@@ -66,6 +78,8 @@
 		<servlet-name>SpringMVC</servlet-name>  
 		<url-pattern>/</url-pattern>  
 	</servlet-mapping>
+
+
 
 	<welcome-file-list>  
 		<welcome-file>index.jsp</welcome-file>  
