@@ -11,6 +11,7 @@ public class LoginController {
 	@RequestMapping(value="/login")
 	 public ModelAndView login(ModelAndView mv){
 		// ¶¯Ì¬Ìø×ªÒ³Ãæ
+		mv.addObject("name", "SpringMVC");
 		mv.setViewName("/sys/welcome");
 		return mv;
 	}
